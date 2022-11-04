@@ -12,7 +12,7 @@ export const denoZips = [
   },
   {
     platform: "linux",
-    arch: "x64",
+    arch: "x86_64",
     zipName: "deno-x86_64-unknown-linux-gnu.zip",
   },
 ];
