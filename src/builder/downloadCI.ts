@@ -1,13 +1,8 @@
 import { denoZips } from "./denoZips";
+import { cliMultibar } from "./progress";
 import axios from "axios";
 
 const pkgVersion = process.env.npm_package_version;
-
-const onDownloadProgress = (name) => (progressEvent) => {
-  // console.log(progressEvent);
-  const percentCompleted = progressEvent.progress.toFixed(2);
-  console.log(` ${name} - download completed:`, percentCompleted);
-};
 
 export async function downloadCI() {
   const downloadPromises = denoZips.map(async (denoVariant) => {
@@ -16,9 +11,16 @@ export async function downloadCI() {
 
     console.debug(dlUrl);
 
-    const name = `${denoVariant.platform}-${denoVariant.arch}`;
+    const name = `${denoVariant.platform}-${denoVariant.arch}`.padEnd(13, " ");
+    const progress = cliMultibar.create(100, 0, { name });
 
-    await axios.get(dlUrl, { onDownloadProgress: onDownloadProgress(name) });
+    await axios.get(dlUrl, {
+      onDownloadProgress: (progressEvent) => {
+        const percentCompleted = progressEvent.progress?.toFixed(2);
+        progress.update(percentCompleted, { filename: name });
+        // console.log(` ${name} - download completed:`, percentCompleted); });
+      },
+    });
   });
 
   await Promise.all(downloadPromises);
