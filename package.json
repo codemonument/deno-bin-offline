@@ -12,7 +12,8 @@
     "deno-bin": "./bin/deno.js"
   },
   "scripts": {
-    "install": "node install.js"
+    "install": "node install.js",
+    "demo": "tsx demo.ts"
   },
   "repository": {
     "type": "git",
@@ -32,6 +33,8 @@
     "follow-redirects": "^1.10.0"
   },
   "devDependencies": {
-    "prettier": "^2.7.1"
+    "axios": "^1.1.3",
+    "prettier": "^2.7.1",
+    "tsx": "^3.11.0"
   }
 }
