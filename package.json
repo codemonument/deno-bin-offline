@@ -1,7 +1,7 @@
 {
   "name": "deno-bin",
   "version": "1.27.1",
-  "description": "CLI wrapper for Deno, a secure runtime for JavaScript and TypeScript",
+  "description": "CLI wrapper for Deno, a secure runtime for JavaScript and TypeScript (Offline-Install)",
   "main": "index.js",
   "files": [
     "install.js",
@@ -16,17 +16,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kt3k/deno-bin.git"
+    "url": "git+https://github.com/codemonument/deno-bin-offline.git"
   },
   "keywords": [
     "deno"
   ],
-  "author": "Yoshiya Hinosawa",
+  "author": "Benjamin Jesuiter",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kt3k/deno-bin/issues"
+    "url": "https://github.com/codemonument/deno-bin-offline/issues"
   },
-  "homepage": "https://github.com/kt3k/deno-bin#readme",
+  "homepage": "https://github.com/codemonument/deno-bin-offline#readme",
   "dependencies": {
     "adm-zip": "^0.5.4",
     "follow-redirects": "^1.10.0"
