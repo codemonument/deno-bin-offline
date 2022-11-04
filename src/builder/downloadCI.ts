@@ -32,13 +32,11 @@ export async function downloadCI() {
     });
 
     const outPath = join("dist", "bin", denoVariant.platform, denoVariant.arch);
-    const zipPath = fs.mkdtempSync(
-      join(os.tmpdir(), "deno-bin-offline-builder", denoVariant.zipName),
-    );
     await fs.mkdirp(outPath);
+    const zipPath = join(outPath, denoVariant.zipName);
     const zipWriter = fs.createWriteStream(zipPath);
 
-    // 2. Saves it in temp dir
+    // 2. Saves zip in out dir
     res.data.pipe(zipWriter).on("close", () => {
       const filename = denoVariant.executableName;
       // 3. Extracts `deno` entry to  folder
@@ -48,7 +46,7 @@ export async function downloadCI() {
         fs.chmodSync(join(outPath, filename), 0o755);
       }
       // 5. Removes the zip file
-      fs.unlinkSync(zipPath);
+      fs.removeSync(zipPath);
     });
   });
 
