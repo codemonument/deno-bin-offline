@@ -1,4 +1,6 @@
-export const denoZips = [
+import { DenoVariant } from "./deno-variant.d.ts";
+
+export const denoZips: DenoVariant[] = [
   {
     platform: "win32",
     arch: "x64",
