@@ -1,0 +1,8 @@
+{
+  "imports": {
+    "comlink": "https://esm.sh/v96/comlink@4.3.1"
+  },
+  "scopes": {
+    "comlink": {}
+  }
+}

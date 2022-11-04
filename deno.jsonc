@@ -1,5 +1,0 @@
-{
-  "tasks": {
-    "comlink": "deno run --allow-read ./examples/comlink/main.ts"
-  }
-}
