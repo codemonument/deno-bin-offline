@@ -1,7 +1,8 @@
 name: Check new release
 on:
   schedule:
-    - cron: '0 */12 * * *'
+    # all 12 hours
+    - cron: "0 */12 * * *"
   workflow_dispatch:
 jobs:
   check-new-release:
