@@ -3,8 +3,8 @@ import { cliMultibar } from "./progress";
 import axios from "axios";
 import * as fs from "fs-extra";
 import { join } from "node:path";
-import os from "node:os";
 import AdmZip from "adm-zip";
+import { pEvent } from "p-event";
 
 const pkgVersion = process.env.npm_package_version;
 
@@ -37,7 +37,9 @@ export async function downloadCI() {
     const zipWriter = fs.createWriteStream(zipPath);
 
     // 2. Saves zip in out dir
-    res.data.pipe(zipWriter).on("close", () => {
+    const zipPipe = res.data.pipe(zipWriter);
+
+    zipPipe.on("close", () => {
       const filename = denoVariant.executableName;
       // 3. Extracts `deno` entry to  folder
       AdmZip(zipPath).extractEntryTo(filename, outPath, true, true, undefined);
@@ -51,4 +53,6 @@ export async function downloadCI() {
   });
 
   await Promise.all(downloadPromises);
+
+  cliMultibar.stop();
 }
