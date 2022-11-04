@@ -6,7 +6,7 @@
  * key of map: `${platform}-${arch}` for faster lookup
  */
 
-const denoVariants = new Map(
+const runtimeVariants = new Map(
   [
     "win32-x64",
     {
@@ -55,5 +55,5 @@ const denoVariants = new Map(
 );
 
 module.exports = {
-  denoVariants,
+  runtimeVariants,
 };
