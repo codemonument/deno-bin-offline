@@ -39,17 +39,21 @@ export async function downloadCI() {
     // 2. Saves zip in out dir
     const zipPipe = res.data.pipe(zipWriter);
 
-    zipPipe.on("close", () => {
-      const filename = denoVariant.executableName;
-      // 3. Extracts `deno` entry to  folder
-      AdmZip(zipPath).extractEntryTo(filename, outPath, true, true, undefined);
-      // 4. Changes the file permission
-      if (denoVariant.platform !== "win32") {
-        fs.chmodSync(join(outPath, filename), 0o755);
-      }
-      // 5. Removes the zip file
-      fs.removeSync(zipPath);
-    });
+    //   zipPipe.on("close", () => {
+    //     const filename = denoVariant.executableName;
+    //     // 3. Extracts `deno` entry to  folder
+    //     AdmZip(zipPath).extractEntryTo(filename, outPath, true, true, undefined);
+    //     // 4. Changes the file permission
+    //     if (denoVariant.platform !== "win32") {
+    //       fs.chmodSync(join(outPath, filename), 0o755);
+    //     }
+    //     // 5. Removes the zip file
+    //     fs.removeSync(zipPath);
+    //   });
+
+    pEvent(zipPipe, "close").then(() =>
+      console.log(`Zip written successfully!`, zipPath)
+    );
   });
 
   await Promise.all(downloadPromises);
