@@ -1,4 +1,4 @@
-import * as Comlink from "https://unpkg.com/comlink/dist/esm/comlink.mjs";
+import * as Comlink from "comlink";
 
 const worker = new Worker(new URL("./worker.ts", import.meta.url).href, {
   type: "module",
