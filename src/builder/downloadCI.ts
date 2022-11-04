@@ -16,9 +16,14 @@ export async function downloadCI() {
 
     await axios.get(dlUrl, {
       onDownloadProgress: (progressEvent) => {
-        const percentCompleted = progressEvent.progress?.toFixed(2);
-        progress.update(percentCompleted, { filename: name });
-        // console.log(` ${name} - download completed:`, percentCompleted); });
+        // console.debug(progressEvent);
+        const percentCompleted = (progressEvent.progress ?? 0) * 100;
+        // console.debug(percentCompleted.toFixed(0));
+        progress.update(percentCompleted);
+
+        if (percentCompleted === 100) {
+          progress.stop();
+        }
       },
     });
   });
