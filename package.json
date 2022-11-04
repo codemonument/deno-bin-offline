@@ -1,5 +1,5 @@
 {
-  "name": "deno-bin",
+  "name": "deno-bin-offline",
   "version": "1.27.1",
   "description": "CLI wrapper for Deno, a secure runtime for JavaScript and TypeScript (Offline-Install)",
   "main": "index.js",
