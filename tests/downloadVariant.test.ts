@@ -1,6 +1,6 @@
 import { downloadVariant } from "@/src/builder/downloadVariant.ts";
 
-Deno.test(`downloadVariant.ts`, async (tc) => {
+Deno.test(`downloadVariant()`, async (tc) => {
   await tc.step(
     `Should download the zip and output progress simultaneously`,
     async () => {
