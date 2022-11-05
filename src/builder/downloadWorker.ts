@@ -21,17 +21,24 @@ class Worker {
     // 1. Download Deno binary zip from github release page
     const { fileStream, progressStream } = await downstream(dlUrl);
 
-    // progressStream.getReader()
-    // Send progress stream back to worker host
-    // .progressStreamCallback(progressStream);
+    // progressStream.getReader().read().then((progress) => {
+    //   //https://developer.mozilla.org/en-US/docs/Web/API/WorkerGlobalScope
+    //   // @ts-ignore - deno cannot now that this file needs WorkerGlobalScope
+    //   self.postMessage(progress);
+    // }).catch((error) => {
+    //   console.error(error);
+    // });
 
-    const outPath = join("dist", "bin", denoVariant.platform, denoVariant.arch);
-    await ensureDir(outPath);
-    const zipPath = join(outPath, denoVariant.zipName);
-    const zipFile = await Deno.open(zipPath, { write: true });
+    // Send progress stream back to worker host
+    // this.progressStreamCallback(progressStream);
+
+    // const outPath = join("dist", "bin", denoVariant.platform, denoVariant.arch);
+    // await ensureDir(outPath);
+    // const zipPath = join(outPath, denoVariant.zipName);
+    // const zipFile = await Deno.open(zipPath, { write: true });
 
     // 2. Saves zip in out dir
-    await fileStream.pipeTo(zipFile.writable);
+    // await fileStream.pipeTo(zipFile.writable);
 
     // pass progress to progress hook
     // for await (const progress of progressStream) {
