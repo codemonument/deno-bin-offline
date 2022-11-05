@@ -13,13 +13,17 @@ export async function downloadVariant(
 ): Promise<void> {
   const dlUrl =
     `https://github.com/denoland/deno/releases/download/v${pkgVersion}/${denoVariant.zipName}`;
-  console.debug(dlUrl);
+  const downloadName = denoVariant.zipName.padEnd(30, " ");
+
+  console.info(`Start downloading: ${downloadName}`);
 
   // 1. Download Deno binary zip from github release page
   const { fileStream, progressStream } = await downstream(dlUrl);
 
-  const progressPromise = progressStream.pipeTo(simpleProgressCliRenderer())
-    .then(() => console.log(`Finished downloading!`));
+  const progressPromise = progressStream.pipeTo(
+    simpleProgressCliRenderer({ title: downloadName }),
+  )
+    .then(() => console.log(`${downloadName} Download finished`));
 
   // Generate Zip File
   const outPath = join("dist", "bin", denoVariant.platform, denoVariant.arch);
@@ -29,7 +33,7 @@ export async function downloadVariant(
 
   // 2. Saves zip in out dir
   const zipWritePromise = fileStream.pipeTo(zipFile.writable).then(() => {
-    console.log(`Finished writing zip file!`);
+    console.log(`${downloadName} Writing Zip file finished`);
   });
 
   await Promise.all([progressPromise, zipWritePromise]);
