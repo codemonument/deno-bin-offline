@@ -4,51 +4,58 @@ import { downstream } from "downstream";
 import { join } from "path.std";
 import { ensureDir } from "fs.std";
 
-let progressStream, fileStream;
+export type ProgressStreamCallback = (
+  progressStream: ReadableStream<string>,
+) => void;
 
-// can be used to test if the comlink bridge is established correctly
-const comlinkReady = true;
+class Worker {
+  // can be used to test if the comlink bridge is established correctly
+  public comlinkReady = true;
+  public progressStreamCallback: ProgressStreamCallback = () => {};
 
-async function download(denoVariant: DenoVariant, pkgVersion: string) {
-  const dlUrl =
-    `https://github.com/denoland/deno/releases/download/v${pkgVersion}/${denoVariant.zipName}`;
-  console.debug(dlUrl);
+  async download(denoVariant: DenoVariant, pkgVersion: string) {
+    const dlUrl =
+      `https://github.com/denoland/deno/releases/download/v${pkgVersion}/${denoVariant.zipName}`;
+    console.debug(dlUrl);
 
-  // 1. Download Deno binary zip from github release page
-  const response = await downstream(dlUrl);
-  fileStream = response.fileStream;
-  progressStream = response.progressStream;
+    // 1. Download Deno binary zip from github release page
+    const { fileStream, progressStream } = await downstream(dlUrl);
 
-  const outPath = join("dist", "bin", denoVariant.platform, denoVariant.arch);
-  await ensureDir(outPath);
-  const zipPath = join(outPath, denoVariant.zipName);
-  const zipFile = await Deno.open(zipPath, { write: true });
+    // progressStream.getReader()
+    // Send progress stream back to worker host
+    // .progressStreamCallback(progressStream);
 
-  // 2. Saves zip in out dir
-  await fileStream.pipeTo(zipFile.writable);
+    const outPath = join("dist", "bin", denoVariant.platform, denoVariant.arch);
+    await ensureDir(outPath);
+    const zipPath = join(outPath, denoVariant.zipName);
+    const zipFile = await Deno.open(zipPath, { write: true });
 
-  // pass progress to progress hook
-  // for await (const progress of progressStream) {
-  //   progressHook(Number.parseFloat(progress));
-  // }
+    // 2. Saves zip in out dir
+    await fileStream.pipeTo(zipFile.writable);
 
-  // const res = await fetch(dlUrl, {
-  //   responseType: "stream",
-  //   onDownloadProgress: (progressEvent: any) => {
-  //     // console.debug(progressEvent);
-  //     const percentCompleted = (progressEvent.progress ?? 0) * 100;
-  //     // console.debug(percentCompleted.toFixed(0));
-  //     progressBar.update(percentCompleted);
+    // pass progress to progress hook
+    // for await (const progress of progressStream) {
+    //   progressHook(Number.parseFloat(progress));
+    // }
 
-  //     if (percentCompleted === 100) {
-  //       progressBar.stop();
-  //     }
-  //   },
-  // });
+    // const res = await fetch(dlUrl, {
+    //   responseType: "stream",
+    //   onDownloadProgress: (progressEvent: any) => {
+    //     // console.debug(progressEvent);
+    //     const percentCompleted = (progressEvent.progress ?? 0) * 100;
+    //     // console.debug(percentCompleted.toFixed(0));
+    //     progressBar.update(percentCompleted);
+
+    //     if (percentCompleted === 100) {
+    //       progressBar.stop();
+    //     }
+    //   },
+    // });
+  }
+
+  catchProgressStream(pgStreamCB: ProgressStreamCallback) {
+    this.progressStreamCallback = pgStreamCB;
+  }
 }
 
-Comlink.expose({
-  download,
-  progressStream,
-  comlinkReady,
-});
+Comlink.expose(new Worker());

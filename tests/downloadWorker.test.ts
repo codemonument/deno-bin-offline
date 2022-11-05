@@ -18,6 +18,14 @@ Deno.test(`downloadWorker.ts`, async (ts) => {
     worker.terminate();
   });
 
-  await ts.step(`Can get progress from worker!`, async () => {
-  });
+  // await ts.step(`Can get progress from worker!`, async () => {
+  //   const worker = new Worker(workerURL, workerOptions);
+  //   const downloadWorker = Comlink.wrap(worker);
+
+  //   await downloadWorker.catchProgressStream(
+  //     (progressStream: ReadableStream<string>) => {
+  //       console.log(progressStream);
+  //     },
+  //   );
+  // });
 });
