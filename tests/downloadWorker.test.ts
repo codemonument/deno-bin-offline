@@ -9,21 +9,25 @@ Deno.test(`downloadWorker.ts`, async (ts) => {
   };
 
   await ts.step(`Can create worker from import_map.json`, async () => {
-    const worker = new Worker(workerURL, workerOptions);
-    const comlinkObj = Comlink.wrap(worker);
+    const rawWorker = new Worker(workerURL, workerOptions);
+    const worker = Comlink.wrap(rawWorker);
 
-    assert(worker);
-    assert(await comlinkObj.comlinkReady);
+    assert(rawWorker);
+    assert(await worker.comlinkReady);
 
-    worker.terminate();
+    rawWorker.terminate();
   });
 
   // await ts.step(`Can get progress from worker!`, async () => {
-  //   const worker = new Worker(workerURL, workerOptions);
-  //   const downloadWorker = Comlink.wrap(worker);
+  //   const rawWorker = new Worker(workerURL, workerOptions);
+  //   const worker = Comlink.wrap(rawWorker);
 
-  //   await downloadWorker.catchProgressStream(
-  //     (progressStream: ReadableStream<string>) => {
+  //   const progressStreamCB = (progressStream: ReadableStream<string> ) => {
+  //     console.log(`Received progressStream from worker: `, progressStream)
+  //   }
+
+  //   await worker.catchProgressStream(
+  //     (progressStream: ) => {
   //       console.log(progressStream);
   //     },
   //   );
