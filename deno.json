@@ -7,5 +7,11 @@
     "comlink": "deno run --allow-read ./examples/comlink/main.ts",
     "test": "deno test --allow-net --allow-read",
     "testu": "deno test --allow-net --allow-read --allow-write -- --update"
+  },
+  "test": {
+    "files": {
+      "include": ["tests/"],
+      "exclude": ["node_modules/"]
+    }
   }
 }
