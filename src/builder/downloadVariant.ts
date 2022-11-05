@@ -16,5 +16,12 @@ export async function downloadVariant(
   // 1. Download Deno binary zip from github release page
   const { fileStream, progressStream } = await downstream(dlUrl);
 
-  await progressStream.pipeTo(simpleProgressCliRenderer());
+  console.log("before progress");
+
+  const progressPromise = progressStream.pipeTo(simpleProgressCliRenderer())
+    .then(() => console.log(`Progress renderer finished`));
+
+  console.log("after progress");
+
+  await progressPromise;
 }
