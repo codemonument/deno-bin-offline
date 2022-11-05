@@ -1,6 +1,7 @@
 {
   "imports": {
-    "comlink": "https://esm.sh/v96/comlink@4.3.1/dist/esm/comlink.mjs"
+    "comlink": "https://esm.sh/v96/comlink@4.3.1/dist/esm/comlink.mjs",
+    "downstream": "https://deno.land/x/downstream@0.2.0/mod.ts"
   },
   "scopes": {
     "comlink": {}
