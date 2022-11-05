@@ -14,14 +14,10 @@ class Worker {
   inc() {
     this.counter++;
   }
-}
 
-async function remoteFunction(cb: TextCallback) {
-  await cb("A string from a worker");
+  async remoteFunction(cb: TextCallback) {
+    await cb("A string from a worker");
+  }
 }
-
-/**
- * End Worker Scope
- */
 
 Comlink.expose(new Worker());
