@@ -19,7 +19,7 @@ export async function downloadCI() {
     // 1. Download Deno binary zip from github release page
     const res = await axios.get(dlUrl, {
       responseType: "stream",
-      onDownloadProgress: (progressEvent) => {
+      onDownloadProgress: (progressEvent: any) => {
         // console.debug(progressEvent);
         const percentCompleted = (progressEvent.progress ?? 0) * 100;
         // console.debug(percentCompleted.toFixed(0));
