@@ -70,4 +70,6 @@ Deno.test(`downloadWorker.ts`, async (ts) => {
 
   //   await worker.catchProgressStream(Comlink.proxy(progressStreamCB));
   // });
+
+  // END DENO TEST
 });
