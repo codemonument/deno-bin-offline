@@ -22,14 +22,11 @@ Deno.test(`downloadWorker.ts`, async (ts) => {
   //   const rawWorker = new Worker(workerURL, workerOptions);
   //   const worker = Comlink.wrap(rawWorker);
 
-  //   const progressStreamCB = (progressStream: ReadableStream<string> ) => {
-  //     console.log(`Received progressStream from worker: `, progressStream)
-  //   }
+  //   const progressStreamCB = (progressStream: ReadableStream<string>) => {
+  //     console.log(`Received progressStream from worker: `, progressStream);
+  //     assert(progressStream);
+  //   };
 
-  //   await worker.catchProgressStream(
-  //     (progressStream: ) => {
-  //       console.log(progressStream);
-  //     },
-  //   );
+  //   await worker.catchProgressStream(Comlink.proxy(progressStreamCB));
   // });
 });
