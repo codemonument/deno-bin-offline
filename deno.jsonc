@@ -5,6 +5,7 @@
     "npm:update": "deno run -A https://esm.sh/v96 update",
     "npm:remove": "deno run -A https://esm.sh/v96 remove",
     "comlink": "deno run --allow-read ./examples/comlink/main.ts",
+    "demo": "deno run -A demo.ts",
     // --allow-write needed for writing zip-file
     // --allow-run needed for unzip
     "test": "deno test --allow-net --allow-read --allow-write --allow-run",
