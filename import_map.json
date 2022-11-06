@@ -7,7 +7,7 @@
     "path.std": "https://deno.land/std@0.162.0/path/mod.ts",
     "fs.std": "https://deno.land/std@0.162.0/fs/mod.ts",
     "testing.std": "./src/deps/testing.std.ts",
-    "zip": "https://deno.land/x/zip@v1.2.4/mod.ts"
+    "zipjs": "https://deno.land/x/zipjs@v2.6.52/index.js"
   },
   "scopes": {
     "comlink": {}
