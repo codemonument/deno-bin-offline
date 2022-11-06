@@ -1,4 +1,4 @@
-import { DenoVariant } from "./DenoVariant.d.ts";
+import type { DenoVariant } from "@/src/types/DenoVariant.d.ts";
 
 export const denoZips: DenoVariant[] = [
   {
