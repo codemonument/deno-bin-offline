@@ -11,7 +11,8 @@
     // --allow-write needed for writing zip-file
     // --allow-run needed for unzip
     "test": "deno test -A",
-    "testu": "deno test -A --update"
+    "testu": "deno test -A --update",
+    "test-download": "deno test -A src/features/deno-downloads"
   },
   "test": {
     "files": {
