@@ -1,15 +1,19 @@
 name: Deploy Deno Release Manually
+
+# GITHUB Docs for workflow_dispatch: https://docs.github.com/en/enterprise-cloud@latest/actions/using-workflows/workflow-syntax-for-github-actions#onworkflow_dispatchinputs
 on:
   workflow_dispatch:
     inputs:
-      deno-version:
-        description: The deno version to download
+      denoVersion:
+        description: 'The deno version to download'
         default: '1.27.1',
         required: true
     # target-package-suffix:
     #   description: The suffix to append to the version for the target npm package. Can also be empty (but beware possible collisions with the main automatic release workflow!).
     #   default: '-cicd.1'
     #   required: true
+
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -22,8 +26,8 @@ jobs:
       # - name: Runs yamllint on all the yaml file of the repository
       #   run: yamllint --strict .
       - run: |
-          npx json-edit-cli set -f './versions.json' -k 'DENO_VERSION' -v '${{ github.event.inputs.deno-version }}'
-          npx json-edit-cli set -f './versions.json' -k 'TARGET_PACKAGE_SUFFIX' -v '${{ github.event.inputs.target-package-suffix }}'
+          npx json-edit-cli set -f './versions.json' -k 'DENO_VERSION' -v '${{ github.event.inputs.denoVersion }}'
+          npx json-edit-cli set -f './versions.json' -k 'TARGET_PACKAGE_SUFFIX' -v '${{ github.event.inputs.targetPackageSuffix }}'
       - run: deno task builder-ci
       - run: npm install
         working-directory: dist
