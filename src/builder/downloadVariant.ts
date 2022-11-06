@@ -4,8 +4,6 @@
 
 import { downstream, simpleProgressCliRenderer } from "downstream";
 import { DenoVariant } from "./DenoVariant.d.ts";
-import { join } from "path.std";
-import { ensureDir } from "fs.std";
 
 export type DownloadVariantResult = {
   zipPath: string;
@@ -30,9 +28,7 @@ export async function downloadVariant(
     .then(() => console.log(`${downloadName} Download finished`));
 
   // Generate Zip File
-  const outPath = join("dist", "bin", denoVariant.platform, denoVariant.arch);
-  await ensureDir(outPath);
-  const zipPath = join(outPath, denoVariant.zipName);
+  const zipPath = await Deno.makeTempFile({ suffix: ".zip" });
   const zipFile = await Deno.open(zipPath, { write: true });
 
   // 2. Saves zip in out dir
