@@ -13,7 +13,6 @@ on:
     #   default: '-cicd.1'
     #   required: true
 
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -26,8 +25,8 @@ jobs:
       # - name: Runs yamllint on all the yaml file of the repository
       #   run: yamllint --strict .
       - run: |
-        npx json-edit-cli set -f './versions.json' -k 'DENO_VERSION' -v ${{ github.event.inputs.denoVersion }}
-        npx json-edit-cli set -f './versions.json' -k 'TARGET_PACKAGE_SUFFIX' -v ${{ github.event.inputs.targetPackageSuffix }}
+          npx json-edit-cli set -f './versions.json' -k 'DENO_VERSION' -v ${{ github.event.inputs.denoVersion }}
+          npx json-edit-cli set -f './versions.json' -k 'TARGET_PACKAGE_SUFFIX' -v ${{ github.event.inputs.targetPackageSuffix }}
       - run: deno task builder-ci
       - run: npm install
         working-directory: dist
