@@ -1,4 +1,5 @@
-const versionsText = await Deno.readTextFile(`../../versions.json`);
+// Deno starts with cwd at the root of the repo :)
+const versionsText = await Deno.readTextFile(`./versions.json`);
 const json: {
   DENO_VERSION: string;
   TARGET_PACKAGE_SUFFIX?: string;
