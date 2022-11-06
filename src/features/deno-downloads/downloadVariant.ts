@@ -1,9 +1,8 @@
 /**
  * Downloads one deno variant
  */
-
 import { downstream, simpleProgressCliRenderer } from "downstream";
-import { DenoVariant } from "./DenoVariant.d.ts";
+import { DenoVariant } from "@/src/types/DenoVariant.d.ts";
 
 export type DownloadVariantResult = {
   zipPath: string;

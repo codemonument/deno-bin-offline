@@ -1,8 +1,8 @@
 import { VERSION } from "@version";
-import { denoZips } from "./denoZips.ts";
-import { downloadVariant } from "@/src/builder/downloadVariant.ts";
+import { denoZips } from "@/src/configs/denoZips.ts";
 import { join, resolve } from "path.std";
 import { terminateWorkers } from "zipjs";
+import { downloadVariant } from "./downloadVariant.ts";
 import { extractDenoZip } from "./extractDenoZip.ts";
 
 export async function downloadAll() {

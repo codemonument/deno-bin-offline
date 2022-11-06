@@ -1,4 +1,4 @@
-import { DenoVariant } from "./DenoVariant.d.ts";
+import { DenoVariant } from "@/src/types/DenoVariant.d.ts";
 import { ZipReader } from "zipjs";
 import { join, resolve } from "path.std";
 import { ensureDir } from "fs.std";
