@@ -9,8 +9,13 @@ export async function downloadAll() {
   // });
   // return Promise.all(downloadPromises);
 
-  await downloadVariant(denoZips[0], VERSION);
-  await downloadVariant(denoZips[1], VERSION);
-  await downloadVariant(denoZips[2], VERSION);
-  await downloadVariant(denoZips[3], VERSION);
+  const variant1 = denoZips[0];
+  const variant2 = denoZips[1];
+  const variant3 = denoZips[2];
+  const variant4 = denoZips[3];
+
+  const res1 = await downloadVariant(variant1, VERSION);
+  const res2 = await downloadVariant(variant2, VERSION);
+  const res3 = await downloadVariant(variant3, VERSION);
+  const res4 = await downloadVariant(variant4, VERSION);
 }
