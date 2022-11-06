@@ -32,7 +32,9 @@ export const packageJson = {
   },
   homepage: "https://github.com/codemonument/deno-bin-offline#readme",
   dependencies: {},
-  devDependencies: {},
+  devDependencies: {
+    "@types/node": "^18.11.9",
+  },
 };
 
 export async function renderPackageJson(outPath?: string) {
