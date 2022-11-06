@@ -7,7 +7,7 @@
     // Demos
     "demo": "deno run -A demo.ts",
     "comlink": "deno run --allow-read ./examples/comlink/main.ts",
-    "zipjs": " deno run --allow-read --allow-write ./examples/zipjs/main.ts",
+    "zipjs": " deno run --allow-read --allow-write --allow-net ./examples/zipjs/main.ts",
     // --allow-write needed for writing zip-file
     // --allow-run needed for unzip
     "test": "deno test --allow-net --allow-read --allow-write --allow-run",
