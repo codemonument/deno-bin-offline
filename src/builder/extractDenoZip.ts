@@ -32,7 +32,7 @@ export async function extractDenoZip(
   const entries = await zipReader.getEntries();
   const firstEntry = entries.shift();
 
-  const outFile = await Deno.open(outFilePath, { write: true });
+  const outFile = await Deno.open(outFilePath, { write: true, create: true });
   await firstEntry?.getData(outFile.writable);
 
   await zipReader.close();
