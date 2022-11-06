@@ -1,7 +1,7 @@
 import { downloadVariant } from "@/src/builder/downloadVariant.ts";
 import { extractDenoZip } from "@/src/builder/extractDenoZip.ts";
 import { DenoVariant } from "../src/builder/DenoVariant.d.ts";
-import { assert } from "testing.std";
+import { assert, assertEquals } from "testing.std";
 import { join, resolve } from "path.std";
 import { terminateWorkers } from "zipjs";
 
@@ -32,9 +32,23 @@ Deno.test(`extractDenoZip()`, async (tc) => {
       const stats = await Deno.lstat(outFilePath);
       assert(stats.isFile);
 
-      // if (variant.platform !== "win32") {
-      //   assert(stats.mode === 0o755);
-      // }
+      // Check if extracted binary is executable
+      const p = Deno.run({
+        cmd: [outFilePath, "--version"],
+        stdout: "piped",
+      });
+      const [status, stdout] = await Promise.all([
+        p.status(),
+        p.output(),
+      ]);
+      p.close();
+
+      const stdoutString = new TextDecoder().decode(stdout);
+
+      assert(status.success === true);
+      assert(stdoutString.startsWith("deno "));
+
+      console.log({ status, stdoutString });
     },
   );
 });
