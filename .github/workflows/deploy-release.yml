@@ -1,4 +1,4 @@
-name: Deploy Deno Release Manually
+name: Deploy Release
 
 # GITHUB Docs for workflow_dispatch: https://docs.github.com/en/enterprise-cloud@latest/actions/using-workflows/workflow-syntax-for-github-actions#onworkflow_dispatchinputs
 on:
