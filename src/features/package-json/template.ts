@@ -35,13 +35,15 @@ export const packageJson = {
   devDependencies: {},
 };
 
-export function renderPackageJson(outPath?: string) {
+export async function renderPackageJson(outPath?: string) {
   if (!outPath) {
     outPath = `dist/`;
   }
 
-  Deno.writeTextFile(
+  await Deno.writeTextFile(
     join(outPath, "package.json"),
     JSON.stringify(packageJson, null, "\t"),
   );
+
+  console.info(`Rendered package.json!`);
 }

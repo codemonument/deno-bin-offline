@@ -5,7 +5,7 @@ import { renderPackageJson } from "@/src/features/package-json/template.ts";
 async function main() {
   await downloadAll();
   await copyAssets();
-  renderPackageJson();
+  await renderPackageJson();
 }
 
 main().then(() => {
