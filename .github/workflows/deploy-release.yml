@@ -28,8 +28,8 @@ jobs:
       # - name: Runs yamllint on all the yaml file of the repository
       #   run: yamllint --strict .
       - run: |
-          dot-json versions.json 'DENO_VERSION' '${{ github.event.inputs.denoVersion }}'
-          dot-json versions.json 'TARGET_PACKAGE_SUFFIX' '${{ github.event.inputs.targetPackageSuffix }}'
+          dot-json versions.json "DENO_VERSION" "${{ github.event.inputs.denoVersion }}"
+          dot-json versions.json "TARGET_PACKAGE_SUFFIX" "${{ github.event.inputs.targetPackageSuffix }}"
       - run: deno task builder-ci
       - run: npm install
         working-directory: dist
