@@ -7,10 +7,14 @@ import { DenoVariant } from "./DenoVariant.d.ts";
 import { join } from "path.std";
 import { ensureDir } from "fs.std";
 
+export type DownloadVariantResult = {
+  zipPath: string;
+};
+
 export async function downloadVariant(
   denoVariant: DenoVariant,
   pkgVersion: string,
-): Promise<void> {
+): Promise<DownloadVariantResult> {
   const dlUrl =
     `https://github.com/denoland/deno/releases/download/v${pkgVersion}/${denoVariant.zipName}`;
   const downloadName = denoVariant.zipName.padEnd(30, " ");
@@ -37,4 +41,6 @@ export async function downloadVariant(
   });
 
   await Promise.all([progressPromise, zipWritePromise]);
+
+  return { zipPath };
 }
