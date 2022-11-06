@@ -1,9 +1,9 @@
-import { VERSION } from "@version";
+import { TARGET_PACKAGE_VERSION } from "@version";
 import { join } from "path.std";
 
 export const packageJson = {
   name: "deno-npm",
-  version: VERSION,
+  version: TARGET_PACKAGE_VERSION,
   description:
     "An inofficial distribution of the deno binary, a secure runtime for JavaScript and TypeScript (Offline-Install), based on deno-bin",
   type: "module",
