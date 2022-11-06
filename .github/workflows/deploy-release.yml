@@ -71,3 +71,16 @@ jobs:
         run: |
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_AUTH_TOKEN }}" > .npmrc
           npm publish
+
+      - name: Push changes back
+        if: github.event.inputs.updateRepo
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+
+      - uses: actions-ecosystem/action-push-tag@v1
+        if: github.event.inputs.updateRepo
+        with:
+          tag: "${{ github.event.inputs.denoVersion }}${{ github.event.inputs.targetPackageSuffix }}"
+          message: "${{ github.event.inputs.denoVersion }}${{ github.event.inputs.targetPackageSuffix }}"
