@@ -17,7 +17,9 @@
     "test-pkg-template": "deno test -A src/features/package-json",
     // Prod Scripts
     "builder": "deno run --allow-net --allow-read --allow-write src/builder.ts --skipDownload",
-    "builder-ci": "deno run --allow-net --allow-read --allow-write src/builder.ts"
+    "builder-ci": "deno run --allow-net --allow-read --allow-write src/builder.ts",
+    // call it like this in cicd: deno task update-versions 1.27.0 -cicd.1
+    "update-versions": "deno run --allow-write=versions.json ./src/update-versions.ts"
   },
   "test": {
     "files": {
