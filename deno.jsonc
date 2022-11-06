@@ -4,8 +4,10 @@
     "npm:add": "deno run -A https://esm.sh/v96 add",
     "npm:update": "deno run -A https://esm.sh/v96 update",
     "npm:remove": "deno run -A https://esm.sh/v96 remove",
-    "comlink": "deno run --allow-read ./examples/comlink/main.ts",
+    // Demos
     "demo": "deno run -A demo.ts",
+    "comlink": "deno run --allow-read ./examples/comlink/main.ts",
+    "zipjs": " deno run --allow-read --allow-write ./examples/zipjs/main.ts",
     // --allow-write needed for writing zip-file
     // --allow-run needed for unzip
     "test": "deno test --allow-net --allow-read --allow-write --allow-run",
