@@ -8,10 +8,10 @@ on:
         description: "The deno version to download"
         default: "1.27.1"
         required: true
-    # target-package-suffix:
-    #   description: The suffix to append to the version for the target npm package. Can also be empty (but beware possible collisions with the main automatic release workflow!).
-    #   default: '-cicd.1'
-    #   required: true
+    targetPackageSuffix:
+      description: The suffix to append to the version for the target npm package. Can also be empty (but beware possible collisions with the main automatic release workflow!).
+      default: "-cicd.1"
+      required: true
 
 jobs:
   deploy:
