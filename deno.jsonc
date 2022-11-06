@@ -6,8 +6,9 @@
     "npm:remove": "deno run -A https://esm.sh/v96 remove",
     "comlink": "deno run --allow-read ./examples/comlink/main.ts",
     // --allow-write needed for writing zip-file
-    "test": "deno test --allow-net --allow-read --allow-write",
-    "testu": "deno test --allow-net --allow-read --allow-write -- --update"
+    // --allow-run needed for unzip
+    "test": "deno test --allow-net --allow-read --allow-write --allow-run",
+    "testu": "deno test --allow-net --allow-read --allow-write --allow-run -- --update"
   },
   "test": {
     "files": {
