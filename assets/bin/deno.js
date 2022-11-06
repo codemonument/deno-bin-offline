@@ -2,8 +2,11 @@
 
 import fs from "node:fs";
 import { join } from "node:path";
-import { denoExecutables } from "./executables";
+import { denoExecutables } from "./executables.js";
 import child_process from "node:child_process";
+import { fileURLToPath } from "node:url";
+
+const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
 (async function () {
   const executable = denoExecutables.get(`${process.platform}-${process.arch}`);
@@ -22,7 +25,7 @@ import child_process from "node:child_process";
     __dirname,
     executable.platform,
     executable.arch,
-    executable.executableFilename
+    executable.executableName
   );
 
   if (!fs.existsSync(executablePath))
