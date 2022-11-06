@@ -1,6 +1,5 @@
 name: CI
-on:
-  [push, pull_request]
+on: [push, pull_request]
 jobs:
   ci:
     runs-on: ${{ matrix.os }}
@@ -10,8 +9,11 @@ jobs:
           - os: ubuntu-latest
           - os: windows-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
-    - run: npm install
-    - run: node install.js
-    - run: ./bin/deno --version
+      - uses: actions/checkout@v2
+      - uses: denoland/setup-deno@v1.0.0
+      - uses: actions/setup-node@v1
+      - run: deno task builder-ci
+      - run: npm install
+        working-directory: dist
+      - run: npx deno --version
+        working-directory: dist
