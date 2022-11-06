@@ -1,12 +1,14 @@
+
+
 name: Deploy Release
 on:
   workflow_dispatch:
     inputs:
-      deno_version:
+      denoVersion:
         description: The deno version to download
         default: '1.27.1',
         required: true
-      target_package_suffix:
+      targetPackageSuffix:
         description: The suffix to append to the version for the target npm package. Can also be empty (but beware possible collisions with the main automatic release workflow!).
         default: '-cicd.1'
         required: true
@@ -18,8 +20,8 @@ jobs:
       - uses: denoland/setup-deno@v1.0.0
       - uses: actions/setup-node@v1
       - run: |
-          npx json-edit-cli set -f './versions.json' -k 'DENO_VERSION' -v '${{ github.event.inputs.deno_version }}'
-          npx json-edit-cli set -f './versions.json' -k 'TARGET_PACKAGE_SUFFIX' -v '${{ github.event.inputs.target_package_suffix }}'
+          npx json-edit-cli set -f './versions.json' -k 'DENO_VERSION' -v '${{ github.event.inputs.denoVersion }}'
+          npx json-edit-cli set -f './versions.json' -k 'TARGET_PACKAGE_SUFFIX' -v '${{ github.event.inputs.targetPackageSuffix }}'
       - run: deno task builder-ci
       - run: npm install
         working-directory: dist
