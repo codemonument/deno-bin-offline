@@ -19,6 +19,10 @@ export const packageJson = {
     "deno-bin-offline": "./bin/deno.js",
     "deno-npm": "./bin/deno.js",
   },
+  scripts: {
+    "start": "node ./bin/deno.js",
+    "deno-version": "node ./bin/deno.js --version",
+  },
   repository: {
     type: "git",
     url: "git+https://github.com/codemonument/deno-bin-offline.git",
