@@ -12,13 +12,20 @@ const variant: DenoVariant = {
   executableName: "deno",
 };
 
-const { zipPath } = await downloadVariant(variant, "1.27.1");
-console.log(zipPath);
+let zipPath;
 
-const outDir = resolve(join("examples", "zipjs"));
+try {
+  const res = await downloadVariant(variant, "1.27.1");
+  zipPath = res.zipPath;
+  console.log(zipPath);
 
-const { outFilePath } = await extractDenoZip(variant, zipPath, outDir);
+  const outDir = resolve(join("examples", "zipjs"));
 
-console.log(outFilePath);
+  const { outFilePath } = await extractDenoZip(variant, zipPath, outDir);
 
-await Deno.remove(zipPath);
+  console.log(outFilePath);
+} finally {
+  if (zipPath) {
+    await Deno.remove(zipPath);
+  }
+}
