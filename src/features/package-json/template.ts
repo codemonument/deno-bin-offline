@@ -21,7 +21,7 @@ export const packageJson = {
   },
   scripts: {
     "start": "node ./bin/deno.js",
-    "deno-version": "node ./bin/deno.js --version",
+    "deno-version": "./bin/deno.js --version",
   },
   repository: {
     type: "git",
