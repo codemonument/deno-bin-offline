@@ -27,8 +27,8 @@ jobs:
       # - name: Runs yamllint on all the yaml file of the repository
       #   run: yamllint --strict .
       - run: |
-          npx json-edit-cli set -f './versions.json' -k 'DENO_VERSION' -v '${{ github.event.inputs.denoVersion }}'
-          npx json-edit-cli set -f './versions.json' -k 'TARGET_PACKAGE_SUFFIX' -v '${{ github.event.inputs.targetPackageSuffix }}'
+          npx dot-json versions.json 'DENO_VERSION' '${{ github.event.inputs.denoVersion }}'
+          npx dot-json versions.json 'TARGET_PACKAGE_SUFFIX' '${{ github.event.inputs.targetPackageSuffix }}'
       - run: deno task builder-ci
       - run: npm install
         working-directory: dist
