@@ -1,4 +1,5 @@
 import { VERSION } from "@version";
+import { join } from "path.std";
 
 export const packageJson = {
   name: "deno-bin-offline",
@@ -40,4 +41,9 @@ export function renderPackageJson(outPath?: string) {
   if (!outPath) {
     outPath = `dist/`;
   }
+
+  Deno.writeTextFile(
+    join(outPath, "package.json"),
+    JSON.stringify(packageJson, null, "\t"),
+  );
 }
