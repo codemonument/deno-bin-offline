@@ -1,7 +1,7 @@
-import { downloadVariant } from "@/src/builder/downloadVariant.ts";
-import { extractDenoZip } from "@/src/builder/extractDenoZip.ts";
-import { DenoVariant } from "../src/builder/DenoVariant.d.ts";
-import { assert, assertEquals } from "testing.std";
+import { downloadVariant } from "./downloadVariant.ts";
+import { extractDenoZip } from "./extractDenoZip.ts";
+import { DenoVariant } from "@/src/types/DenoVariant.d.ts";
+import { assert } from "testing.std";
 import { join, resolve } from "path.std";
 import { terminateWorkers } from "zipjs";
 

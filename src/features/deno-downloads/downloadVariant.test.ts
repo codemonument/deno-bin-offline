@@ -1,4 +1,4 @@
-import { downloadVariant } from "@/src/builder/downloadVariant.ts";
+import { downloadVariant } from "./downloadVariant.ts";
 
 Deno.test(`downloadVariant()`, async (tc) => {
   await tc.step(

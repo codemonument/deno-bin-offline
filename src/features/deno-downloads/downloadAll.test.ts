@@ -1,4 +1,4 @@
-import { downloadAll } from "@/src/builder/downloadAll.ts";
+import { downloadAll } from "./downloadAll.ts";
 import { assert } from "testing.std";
 
 Deno.test(`downloadAll()`, async (tc) => {
