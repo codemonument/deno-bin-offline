@@ -1,9 +1,8 @@
+import { VersionsJson } from "@/src/types/versions.json.d.ts";
+
 // Deno starts with cwd at the root of the repo :)
 const versionsText = await Deno.readTextFile(`./versions.json`);
-const json: {
-  DENO_VERSION: string;
-  TARGET_PACKAGE_SUFFIX?: string;
-} = JSON.parse(versionsText);
+const json: VersionsJson = JSON.parse(versionsText);
 
 // add a prerelease id like this: 1.27.1-beta.1
 export const DENO_VERSION = json.DENO_VERSION;
