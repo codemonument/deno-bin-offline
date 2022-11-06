@@ -21,7 +21,7 @@ jobs:
       - uses: denoland/setup-deno@v1.0.0
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
       - run: npm i -g dot-json
       # - name: Installs the latest version of Yamllint
       #   run: pip install yamllint
