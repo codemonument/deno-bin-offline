@@ -24,7 +24,8 @@ try {
   const { outFilePath } = await extractDenoZip(variant, zipPath, outDir);
 
   console.log(outFilePath);
-} finally {
+} catch (error) {
+  console.error(error);
   if (zipPath) {
     await Deno.remove(zipPath);
   }
