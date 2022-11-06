@@ -12,6 +12,11 @@ on:
         description: The suffix to append to the version for the target npm package. Can also be empty (but beware possible collisions with the main automatic release workflow!).
         default: "-cicd.1"
         required: true
+      publishToNpm:
+        description: If true, publishes a new package with that suffix to npm!
+        default: false,
+        required: false
+        type: boolean
 
 jobs:
   deploy:
@@ -28,7 +33,16 @@ jobs:
       #   run: yamllint --strict .
       - run: deno task update-versions ${{ github.event.inputs.denoVersion }} ${{ github.event.inputs.targetPackageSuffix }}
       - run: deno task builder-ci
+
       - run: npm install
         working-directory: dist
+
       - run: ./bin/deno.js --version
         working-directory: dist
+
+      - name: publish new version
+        if: github.event.inputs.publishToNpm
+        working-directory: dist
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_AUTH_TOKEN }}" > .npmrc
+          npm publish
