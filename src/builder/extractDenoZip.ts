@@ -32,7 +32,12 @@ export async function extractDenoZip(
   const entries = await zipReader.getEntries();
   const firstEntry = entries.shift();
 
-  const outFile = await Deno.open(outFilePath, { write: true, create: true });
+  // Note: mode flag will be ignored on windows
+  const outFile = await Deno.open(outFilePath, {
+    write: true,
+    create: true,
+    mode: 0o755,
+  });
   await firstEntry?.getData(outFile.writable);
 
   await zipReader.close();
@@ -40,9 +45,10 @@ export async function extractDenoZip(
   // outFile.close();
 
   // 4. Changes the file permission
-  if (variant.platform !== "win32") {
-    await Deno.chmod(outFilePath, 0o755);
-  }
+  // Not necessary anymore, since i set the mode directly in Deno.open(outFilePath) above
+  // if (variant.platform !== "win32") {
+  //   await Deno.chmod(outFilePath, 0o755);
+  // }
 
   // 5. Removes the zip file
   await Deno.remove(zipPath);
