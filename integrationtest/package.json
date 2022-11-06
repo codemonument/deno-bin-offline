@@ -2,6 +2,6 @@
   "private": true,
   "name": "integrationtest",
   "dependencies": {
-    "deno-bin": "^1.8.3-r2"
+    "deno-npm": "1.27.1-local.1"
   }
 }

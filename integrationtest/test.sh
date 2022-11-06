@@ -1,2 +1,4 @@
-yarn add deno-bin
-yarn deno --version
+#!/usr/bin/env bash
+
+npm i
+npx deno --version

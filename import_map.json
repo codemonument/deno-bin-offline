@@ -1,0 +1,15 @@
+{
+  "imports": {
+    "@/": "./",
+    "@version": "./src/configs/versions.ts",
+    "comlink": "https://esm.sh/v96/comlink@4.3.1/dist/esm/comlink.mjs",
+    "downstream": "https://deno.land/x/downstream@0.3.1/mod.ts",
+    "path.std": "https://deno.land/std@0.162.0/path/mod.ts",
+    "fs.std": "https://deno.land/std@0.162.0/fs/mod.ts",
+    "testing.std": "./src/deps/testing.std.ts",
+    "zipjs": "https://deno.land/x/zipjs@v2.6.52/index.js"
+  },
+  "scopes": {
+    "comlink": {}
+  }
+}

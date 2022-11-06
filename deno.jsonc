@@ -1,0 +1,28 @@
+{
+  "importMap": "import_map.json",
+  "tasks": {
+    "npm:add": "deno run -A https://esm.sh/v96 add",
+    "npm:update": "deno run -A https://esm.sh/v96 update",
+    "npm:remove": "deno run -A https://esm.sh/v96 remove",
+    // Demos
+    "demo": "deno run -A demo.ts",
+    "comlink": "deno run --allow-read ./examples/comlink/main.ts",
+    "zipjs": " deno run --allow-read --allow-write --allow-net ./examples/zipjs/main.ts",
+    // --allow-write needed for writing zip-file
+    // --allow-run needed for unzip
+    "test": "deno test -A",
+    "testu": "deno test -A --update",
+    "test-download": "deno test -A src/features/deno-downloads",
+    "test-assets": "deno test -A src/features/copy-assets",
+    "test-pkg-template": "deno test -A src/features/package-json",
+    // Prod Scripts
+    "builder": "deno run --allow-net --allow-read --allow-write src/builder.ts --skipDownload",
+    "builder-ci": "deno run --allow-net --allow-read --allow-write src/builder.ts"
+  },
+  "test": {
+    "files": {
+      "include": ["tests/", "/src"],
+      "exclude": ["node_modules/"]
+    }
+  }
+}
