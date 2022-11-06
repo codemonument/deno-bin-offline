@@ -16,7 +16,7 @@
     "test-assets": "deno test -A src/features/copy-assets",
     "test-pkg-template": "deno test -A src/features/package-json",
     // Prod Scripts
-    "builder": "deno run src/builder.ts"
+    "builder": "deno run --allow-net --allow-read --allow-write src/builder.ts"
   },
   "test": {
     "files": {
