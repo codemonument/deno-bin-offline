@@ -12,7 +12,8 @@
     // --allow-run needed for unzip
     "test": "deno test -A",
     "testu": "deno test -A --update",
-    "test-download": "deno test -A src/features/deno-downloads"
+    "test-download": "deno test -A src/features/deno-downloads",
+    "test-assets": "deno test -A src/features/copy-assets"
   },
   "test": {
     "files": {
