@@ -17,6 +17,11 @@ on:
         default: false,
         required: false
         type: boolean
+      updateRepo:
+        description: If true, pushes all changes back to source repo!
+        default: true,
+        required: false
+        type: boolean
   workflow_dispatch:
     inputs:
       denoVersion:
@@ -29,6 +34,11 @@ on:
         required: true
       publishToNpm:
         description: If true, publishes a new package with that suffix to npm!
+        default: false,
+        required: false
+        type: boolean
+      updateRepo:
+        description: If true, pushes all changes back to source repo!
         default: false,
         required: false
         type: boolean
