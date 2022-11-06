@@ -8,4 +8,9 @@ const zipReader = new ZipReader(zipFile.readable);
 
 const entries = await zipReader.getEntries();
 
-console.log(entries);
+const firstEntry = entries.shift();
+
+// pass writable stream to getData to write the data :)
+// firstEntry?.getData();
+
+console.log(firstEntry);
