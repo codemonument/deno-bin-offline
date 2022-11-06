@@ -17,6 +17,7 @@ export const packageJson = {
   bin: {
     "deno": "./bin/deno.js",
     "deno-bin-offline": "./bin/deno.js",
+    "deno-npm": "./bin/deno.js",
   },
   repository: {
     type: "git",
