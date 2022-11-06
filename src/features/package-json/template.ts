@@ -31,9 +31,7 @@ export const packageJson = {
     url: "https://github.com/codemonument/deno-bin-offline/issues",
   },
   homepage: "https://github.com/codemonument/deno-bin-offline#readme",
-  dependencies: {
-    "adm-zip": "^0.5.4",
-  },
+  dependencies: {},
   devDependencies: {},
 };
 
