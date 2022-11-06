@@ -14,7 +14,9 @@
     "testu": "deno test -A --update",
     "test-download": "deno test -A src/features/deno-downloads",
     "test-assets": "deno test -A src/features/copy-assets",
-    "test-pkg-template": "deno test -A src/features/package-json"
+    "test-pkg-template": "deno test -A src/features/package-json",
+    // Prod Scripts
+    "builder": "deno run src/builder.ts"
   },
   "test": {
     "files": {
