@@ -7,6 +7,16 @@ import child_process from "node:child_process";
 
 (async function () {
   const executable = denoExecutables.get(`${process.platform}-${process.arch}`);
+  const issuesURL = "https://github.com/codemonument/deno-bin-offline/issues";
+
+  if (!executable) {
+    const supportedPlatforms = denoExecutables.keys.join(", ");
+    throw new Error(
+      `Your platform (${process.platform}, ${process.arch}) is currently not supported!
+      Platforms supported: ${supportedPlatforms}.
+      You can raise an issue here and ask for support: ${issuesURL}`
+    );
+  }
 
   let executablePath = join(
     __dirname,
@@ -17,7 +27,7 @@ import child_process from "node:child_process";
 
   if (!fs.existsSync(executablePath))
     throw new Error(`Deno Executable not found at ${executablePath}. Something is wrong with this install.
-  Please raise an issue at: https://github.com/codemonument/deno-bin-offline/issues`);
+  Please raise an issue at: ${issuesURL}`);
 
   const p = child_process.spawnSync(executablePath, process.argv.slice(2), {
     cwd: process.cwd(),
