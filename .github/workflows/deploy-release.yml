@@ -22,13 +22,14 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
+      - run: npm i -g dot-json
       # - name: Installs the latest version of Yamllint
       #   run: pip install yamllint
       # - name: Runs yamllint on all the yaml file of the repository
       #   run: yamllint --strict .
       - run: |
-          npx dot-json versions.json 'DENO_VERSION' '${{ github.event.inputs.denoVersion }}'
-          npx dot-json versions.json 'TARGET_PACKAGE_SUFFIX' '${{ github.event.inputs.targetPackageSuffix }}'
+          dot-json versions.json 'DENO_VERSION' '${{ github.event.inputs.denoVersion }}'
+          dot-json versions.json 'TARGET_PACKAGE_SUFFIX' '${{ github.event.inputs.targetPackageSuffix }}'
       - run: deno task builder-ci
       - run: npm install
         working-directory: dist
