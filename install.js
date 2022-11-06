@@ -26,6 +26,7 @@ function filename() {
     }
   }
 }
+
 function executableFilename() {
   switch (process.platform) {
     case "win32": {
@@ -38,20 +39,20 @@ function executableFilename() {
 }
 
 function main() {
-  return new Promise(resolve => {
-
-    const dlUrl =
-      `https://github.com/denoland/deno/releases/download/v${pkg.version}/${filename()}`;
+  return new Promise((resolve) => {
+    const dlUrl = `https://github.com/denoland/deno/releases/download/v${
+      pkg.version
+    }/${filename()}`;
     //console.log(dlUrl);
     const binPath = path.join(__dirname, "bin");
     const zipPath = path.join(
       fs.mkdtempSync(path.join(os.tmpdir(), "deno-bin")),
-      "deno.zip",
+      "deno.zip"
     );
     const denoBin = path.join(binPath, executableFilename());
-    
+
     if (fs.existsSync(denoBin)) resolve(denoBin);
-    
+
     // 1. Download Deno binary zip from github release page
     https.get(dlUrl, (res) => {
       // 2. Saves it in temp dir
