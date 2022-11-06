@@ -10,12 +10,12 @@
     "zipjs": " deno run --allow-read --allow-write --allow-net ./examples/zipjs/main.ts",
     // --allow-write needed for writing zip-file
     // --allow-run needed for unzip
-    "test": "deno test --allow-net --allow-read --allow-write --allow-run",
-    "testu": "deno test --allow-net --allow-read --allow-write --allow-run -- --update"
+    "test": "deno test -A",
+    "testu": "deno test -A --update"
   },
   "test": {
     "files": {
-      "include": ["tests/"],
+      "include": ["tests/", "/src"],
       "exclude": ["node_modules/"]
     }
   }
